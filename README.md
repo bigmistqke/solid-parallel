@@ -38,7 +38,7 @@ worker.postMessage(shared)
 
 setTimeout(() => {
   console.log('set value on main thread')
-  buffer[0] = 2
+  buffer[0] = 1
 }, 1000)
 
 createEffect(() => console.log('effect main thread', buffer[0]))
@@ -55,7 +55,7 @@ onmessage = message => {
 
   setTimeout(() => {
     console.log('set value on worker thread')
-    buffer[0] = 10
+    buffer[0] = 2
   }, 2000)
   
   createEffect(() => console.log('effect worker', buffer[0]))
@@ -68,9 +68,9 @@ onmessage = message => {
 effect main thread 0
 effect worker 0
 set value on main thread
-effect main thread 2
-effect worker 2
+effect main thread 1
+effect worker 1
 set value on worker thread
-effect worker 10
-effect main thread 10
+effect worker 2
+effect main thread 2
 ```
