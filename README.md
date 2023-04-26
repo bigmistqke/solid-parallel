@@ -6,7 +6,7 @@
 
 [![pnpm](https://img.shields.io/badge/maintained%20with-pnpm-cc00ff.svg?style=for-the-badge&logo=pnpm)](https://pnpm.io/)
 
-utilities for distributed reactivity
+utilities for distributed reactivity (only available in chrome [see](https://bugzilla.mozilla.org/show_bug.cgi?id=1467846))
 
 <!-- ## Quick start
 
