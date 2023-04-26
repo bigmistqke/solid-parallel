@@ -17,7 +17,8 @@ const signal = (buffer: Int32Array, index: number) => {
   }
 
   const subscribe = () => {
-    const result = Atomics.waitAsync(buffer, index, buffer[index]!)
+    // @ts-ignore
+    const result = Atomics.waitAsync(buffer, index, buffer[index])
     if (result.async)
       result.value.then(() => {
         s[1]()
