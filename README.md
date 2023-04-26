@@ -61,3 +61,16 @@ onmessage = message => {
   }, 2000)
 }
 ```
+
+- log
+
+```
+effect main thread 0
+effect worker 0
+set value on main thread
+effect main thread 2
+effect worker 2
+set value on worker thread
+effect worker 10
+effect main thread 10
+```
