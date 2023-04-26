@@ -8,16 +8,7 @@
 
 utilities for distributed reactivity
 
-> **Note** After using this template, you have to search and replace all `solid-parallel` and similar strings
-> with appropriate texts.
->
-> `solid-parallel` should be a **kebab-case** string representing the name of you monorepo.
->
-> `utilities for distributed reactivity` should be a **Normal case** string with the description of the repository.
->
-> `bigmistqke` should be a **kebab-case** string from your profile URL.
-
-## Quick start
+<!-- ## Quick start
 
 Install it:
 
@@ -28,9 +19,45 @@ yarn add solid-parallel
 # or
 pnpm add solid-parallel
 ```
+ -->
 
 Use it:
 
+- main thread
+
 ```tsx
-import solid-parallel from 'solid-parallel'
+import { createEffect } from 'solid-js'
+import { createSharedArrayBuffer } from 'solid-parallel'
+
+const shared = new SharedArrayBuffer(1024)
+const buffer = createBuffer(new Int32Array(shared))
+
+const worker = new Worker('./worker.js', { type: 'module' })
+
+worker.postMessage(shared)
+
+setTimeout(() => {
+  console.log('set value on main thread')
+  buffer[0] = 2
+}, 1000)
+
+createEffect(() => console.log('effect main thread', buffer[0]))
+```
+
+- worker thread
+
+```tsx
+import { createEffect } from 'solid-js'
+import { createBuffer } from 'solid-parallel'
+
+onmessage = message => {
+  const buffer = createBuffer(new Int32Array(message.data))
+
+  createEffect(() => console.log('effect worker', buffer[0]))
+
+  setTimeout(() => {
+    console.log('set value on worker thread')
+    buffer[0] = 10
+  }, 2000)
+}
 ```
