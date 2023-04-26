@@ -27,7 +27,7 @@ Use it:
 
 ```tsx
 import { createEffect } from 'solid-js'
-import { createSharedArrayBuffer } from 'solid-parallel'
+import { createBuffer } from 'solid-parallel'
 
 const shared = new SharedArrayBuffer(1024)
 const buffer = createBuffer(new Int32Array(shared))
