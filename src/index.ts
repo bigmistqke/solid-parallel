@@ -9,7 +9,6 @@ const signal = (buffer: Int32Array, index: number) => {
   }
   const write = (value: any) => {
     if (value === buffer[index]) {
-      console.log('it creates the same value so we do not set signal')
       return
     }
     Atomics.store(buffer, index, value)
