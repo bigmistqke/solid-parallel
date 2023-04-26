@@ -1,5 +1,5 @@
-import { describe } from 'vitest'
+import { describe, it } from 'vitest'
 
-describe('environment', () => {})
-
-describe('createHello', () => {})
+describe('environment', () => {
+  it('stub', () => {})
+})
